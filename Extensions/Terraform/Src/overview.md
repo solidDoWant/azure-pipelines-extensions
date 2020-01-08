@@ -16,6 +16,7 @@ The Terraform task enables running Terraform commands as part of Azure Build and
 - init
 - validate
 - plan
+- graph
 - apply
 - destroy
 

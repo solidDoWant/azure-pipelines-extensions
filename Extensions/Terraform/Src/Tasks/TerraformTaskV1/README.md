@@ -7,6 +7,7 @@ This task enables running Terraform commands as part of Azure Build and Release 
 - init
 - validate
 - plan
+- graph
 - apply
 - destroy
 
@@ -40,6 +41,7 @@ The only pre-requisite for the task is that Terraform must be installed on the A
 	- init
     - validate
     - plan
+	- graph
     - apply
     - destroy
 
@@ -78,5 +80,6 @@ Options specific to **terraform plan, apply and destroy** commands
 
 ## Output Variables
 
-* **Terraform plan json file path:** This variable refers to the location of the terraform plan file in JSON format that was created. This file can be used by tasks which are written for tools such as [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/terraform/)<br><br>Note: This variable will only be set if 'command' input is set to 'plan'.
+* **Terraform plan json file path:** This variable refers to the location of the graph file in DOT format that was created. This file can be used by tasks which are written for tools such as [GraphViz](http://www.graphviz.org/)<br><br>Note: This variable will only be set if 'command' input is set to 'graph'.
+* **Terraform graph dot file path:** This variable refers to the location of the terraform plan file in JSON format that was created. This file can be used by tasks which are written for tools such as [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/terraform/)<br><br>Note: This variable will only be set if 'command' input is set to 'plan'.
 * **Terraform output variables json file path:** The location of the JSON file which contains the output variables set by the user in the terraform config files.<br><br>Note: This variable will only be set if 'command' input is set to 'apply'.

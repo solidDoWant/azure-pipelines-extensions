@@ -661,6 +661,224 @@ describe('Terraform Test Suite', () => {
             done(error);
         }
     });
+	
+	/* terraform graph tests */
+
+    it('azure graph should succeed with no additional args', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/Azure/AzureGraphSuccessNoAdditionalArgs.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.succeeded, 'task should have succeeded');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 0, 'should have no errors');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('AzureGraphSuccessNoAdditionalArgsL0 should have succeeded.'), 'Should have printed: AzureGraphSuccessNoAdditionalArgsL0 should have succeeded.');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('azure graph should succeed with additional args', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/Azure/AzureGraphSuccessAdditionalArgs.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.succeeded, 'task should have succeeded');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 0, 'should have no errors');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('AzureGraphSuccessAdditionalArgsL0 should have succeeded.'), 'Should have printed: AzureGraphSuccessAdditionalArgsL0 should have succeeded.');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('azure graph should fail with invalid working directory', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/Azure/AzureGraphFailInvalidWorkingDirectory.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.failed, 'task should have failed');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 1, 'should have one error');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('Execution failed: invalid config files'), 'Should have shown error message');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('azure graph should fail with empty working directory', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/Azure/AzureGraphFailEmptyWorkingDirectory.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.failed, 'task should have failed');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 1, 'should have one error');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('Error: No configuration files'), 'Should have shown error message');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('aws graph should succeed with no additional args', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/AWS/AWSGraphSuccessNoAdditionalArgs.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.succeeded, 'task should have succeeded');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 0, 'should have no errors');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('AWSGraphSuccessNoAdditionalArgsL0 should have succeeded.'), 'Should have printed: AWSGraphSuccessNoAdditionalArgsL0 should have succeeded.');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('aws graph should succeed with additional args', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/AWS/AWSGraphSuccessAdditionalArgs.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.succeeded, 'task should have succeeded');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 0, 'should have no errors');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('AWSGraphSuccessAdditionalArgsL0 should have succeeded.'), 'Should have printed: AWSGraphSuccessAdditionalArgsL0 should have succeeded.');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('aws graph should fail with invalid working directory', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/AWS/AWSGraphFailInvalidWorkingDirectory.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.failed, 'task should have failed');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 1, 'should have one error');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('Execution failed: invalid config files'), 'Should have shown error message');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('aws graph should fail with empty working directory', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/AWS/AWSGraphFailEmptyWorkingDirectory.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.failed, 'task should have failed');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 1, 'should have one error');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('Error: No configuration files'), 'Should have shown error message');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('gcp graph should succeed with no additional args', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/GCP/GCPGraphSuccessNoAdditionalArgs.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.succeeded, 'task should have succeeded');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 0, 'should have no errors');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('GCPGraphSuccessNoAdditionalArgsL0 should have succeeded.'), 'Should have printed: GCPGraphSuccessNoAdditionalArgsL0 should have succeeded.');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('gcp graph should succeed with additional args', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/GCP/GCPGraphSuccessAdditionalArgs.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.succeeded, 'task should have succeeded');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 0, 'should have no errors');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('GCPGraphSuccessAdditionalArgsL0 should have succeeded.'), 'Should have printed: GCPGraphSuccessAdditionalArgsL0 should have succeeded.');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+
+    it('gcp graph should fail with invalid working directory', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/GCP/GCPGraphFailInvalidWorkingDirectory.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.failed, 'task should have failed');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 1, 'should have one error');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('Execution failed: invalid config files'), 'Should have shown error message');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
+    
+    it('gcp graph should fail with empty working directory', (done: MochaDone) => {
+        let tp = path.join(__dirname, './GraphTests/GCP/GCPGraphFailEmptyWorkingDirectory.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+        try {
+            tr.run();
+
+            assert(tr.failed, 'task should have failed');
+            assert(tr.invokedToolCount === 2, 'tool should have been invoked two times. actual: ' + tr.invokedToolCount);
+            assert(tr.errorIssues.length === 1, 'should have one error');
+            assert(tr.warningIssues.length === 0, 'should have no warnings');
+            assert(tr.stdOutContained('Error: No configuration files'), 'Should have shown error message');
+
+            done();
+        } catch(error) {
+            done(error);
+        }
+    });
 
     /* terraform apply tests */
 

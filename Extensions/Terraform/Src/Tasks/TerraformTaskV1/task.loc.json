@@ -70,6 +70,7 @@
         "init": "init",
         "validate": "validate",
         "plan": "plan",
+		"graph": "graph",
         "apply": "validate and apply",
         "destroy": "destroy"
       },
@@ -255,6 +256,10 @@
       "name": "jsonPlanFilePath",
       "description": "The location of the terraform plan file in JSON format that was created. This file can be used by tasks which are written for tools such as [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/terraform/)<br><br>Note: This variable will only be set if 'command' input is set to 'plan'."
     },
+	{
+            "name": "jsonPlanFilePath",
+            "description": "The location of the graph file in DOT format that was created. This file can be used by tasks which are written for tools such as [GraphViz](http://www.graphviz.org/)<br><br>Note: This variable will only be set if 'command' input is set to 'graph'."
+	},
     {
       "name": "jsonOutputVariablesPath",
       "description": "The location of the JSON file which contains the output variables set by the user in the terraform config files.<br><br>Note: This variable will only be set if 'command' input is set to 'apply'."

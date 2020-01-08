@@ -308,4 +308,19 @@ export abstract class BaseTerraformCommandHandler {
             cwd: validateCommand.workingDirectory
         });
     }
+	
+	public async graph(): Promise<number> {
+        let validateCommand = new TerraformBaseCommandInitializer(
+            "graph",
+            tasks.getInput("workingDirectory"),
+            tasks.getInput("commandOptions")
+        );
+
+        let terraformTool;
+        terraformTool = this.terraformToolHandler.createToolRunner(validateCommand);
+
+        return terraformTool.exec(<IExecOptions>{
+            cwd: validateCommand.workingDirectory
+        });
+    }
 }
